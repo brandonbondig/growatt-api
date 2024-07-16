@@ -7,7 +7,7 @@ A Python wrapper for the Growatt API, allowing you to interact with Growatt's se
 ## Installation
 
 ```bash
-pip install growatt_api
+pip install growatt-api
 ```
 
 ## Usage
