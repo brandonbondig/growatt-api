@@ -48,24 +48,25 @@ Here's a quick demo showing how to use the Growatt API wrapper.
 
 ```python
 from growatt import Growatt
-from pprint import pprint
 
-# Initialize and login
 api = Growatt()
+
 api.login("user@example.com", "pass123")
 
-# Get the plant ID from the plant list
-plant_list = api.getPlantListTitle()
-plant_id = plant_list[0]["id"]
-print(f"Plant ID: {plant_id}")
+plantId = api.get_plants()[0]["id"]
+print(f"Plant ID: {plantId}")
 
-# Get devices by plant list
-mixSn = api.getDevicesByPlantList(1, plantId)["obj"]["datas"][0]["alias"]
-pprint(mixSn)
+plant = api.get_plant(plantId)
+print(plant)
 
-# Get MIX status data
-mix_status_data = api.getMIXStatusData(plant_id, mixSn)
-pprint(mix_status_data)
+mixSn = api.get_mix_ids(plantId)[0][1]
+print(mixSn)
+
+mixTotal = api.get_mix_total(plantId, mixSn)
+print(mixTotal)
+
+mixStatus = api.get_mix_status(plantId, mixSn)
+pprint(mixStatus)
 ```
 
 ### License
