@@ -23,22 +23,22 @@ api = Growatt()
 api.login("your_email@example.com", "your_password")
 ```
 
-### Fetching Plant List Title
+### Fetching Plants
 
-Retrieve the list of plant titles.
+Retrieve the first plant and get the id.
 
 ```python
-plant_list = api.getPlantListTitle()
+plant_list = api.get_plants()[0]["id"]
 print(plant_list)
 ```
 
-### Fetching Plant Topic
+### Fetching Specific Plant
 
 Get detailed information about a specific plant.
 
 ```python
-plant_id = "your_plant_id"
-plant_topic = api.getPlantTopic(plant_id)
+plant_id = "plant_id"
+plant_topic = api.get_plant(plant_id)
 print(plant_topic)
 ```
 
