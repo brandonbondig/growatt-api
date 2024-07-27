@@ -193,5 +193,155 @@ class Growatt:
             return json_res
         except re.exceptions.JSONDecodeError:
             raise ValueError("Invalid response received. Please ensure you are logged in.")
+    
+    def get_energy_stats_daily(self, date: str, plantId: str, mixSn: str):
+        """
+        Fetch daily energy statistics.
+
+        Parameters:
+        date (str): The date for the energy statistics in 'YYYY-MM-DD' format.
+        plantId (str): The ID of the plant.
+        mixSn (str): The serial number of the mix device.
+
+        Example:
+        api.get_energy_stats_daily(date="2024-07-28", plantId="1234567", mixSn="ODCUTJF8IFP")
+        """
+
+        data = {
+            "date": date,
+            "plantId": str(plantId),	
+            "mixSn": mixSn
+        }
+
+        res = self.session.post(f"{self.BASE_URL}/panel/mix/getMIXEnergyDayChart", data=data)
+        res.raise_for_status()
+
+        try:
+            json_res = res.json()
+
+            if not json_res:
+                raise ValueError("Empty response. Please ensure you are logged in.")
+            return json_res
+        except re.exceptions.JSONDecodeError:
+            raise ValueError("Invalid response received. Please ensure you are logged in.")
+        
+    def get_energy_stats_monthly(self, date: str, plantId: str, mixSn: str):
+        """
+        Fetch monthly energy statistics.
+
+        Parameters:
+        date (str): The date for the energy statistics in 'YYYY-MM' format.
+        plantId (str): The ID of the plant.
+        mixSn (str): The serial number of the mix device.
+
+        Example:
+        api.get_energy_stats_daily(date="2024-07", plantId="1234567", mixSn="ODCUTJF8IFP")
+        """
+
+        data = {
+            "date": date,
+            "plantId": str(plantId),	
+            "mixSn": mixSn
+        }
+
+        res = self.session.post(f"{self.BASE_URL}/panel/mix/getMIXEnergyMonthChart", data=data)
+        res.raise_for_status()
+
+        try:
+            json_res = res.json()
+
+            if not json_res:
+                raise ValueError("Empty response. Please ensure you are logged in.")
+            return json_res
+        except re.exceptions.JSONDecodeError:
+            raise ValueError("Invalid response received. Please ensure you are logged in.")
+        
+    def get_energy_stats_yearly(self, year: str, plantId: str, mixSn: str):
+        """
+        Fetch yearly energy statistics.
+
+        Parameters:
+        year (str): The year for the energy statistics in 'YYYY' format.
+        plantId (str): The ID of the plant.
+        mixSn (str): The serial number of the mix device.
+
+        Example:
+        api.get_energy_stats_daily(year="2024", plantId="1234567", mixSn="ODCUTJF8IFP")
+        """
+        data = {
+            "year": year,
+            "plantId": str(plantId),	
+            "mixSn": mixSn
+        }
+
+        res = self.session.post(f"{self.BASE_URL}/panel/mix/getMIXEnergyYearChart", data=data)
+        res.raise_for_status()
+
+        try:
+            json_res = res.json()
+
+            if not json_res:
+                raise ValueError("Empty response. Please ensure you are logged in.")
+            return json_res
+        except re.exceptions.JSONDecodeError:
+            raise ValueError("Invalid response received. Please ensure you are logged in.")
+
+
+    def get_energy_stats_total(self, year: str, plantId: str, mixSn: str):
+        """
+        Fetch total energy statistics.
+
+        Parameters:
+        year (str): The year for the total energy statistics in 'YYYY' format.
+        plantId (str): The ID of the plant.
+        mixSn (str): The serial number of the mix device.
+
+        Example:
+        api.get_energy_stats_daily(year="2024", plantId="1234567", mixSn="ODCUTJF8IFP")
+        """
+
+        data = {
+            "year": year,
+            "plantId": str(plantId),	
+            "mixSn": mixSn
+        }
+
+        res = self.session.post(f"{self.BASE_URL}/panel/mix/getMIXEnergyTotalChart", data=data)
+        res.raise_for_status()
+
+        try:
+            json_res = res.json()
+
+            if not json_res:
+                raise ValueError("Empty response. Please ensure you are logged in.")
+            return json_res
+        except re.exceptions.JSONDecodeError:
+            raise ValueError("Invalid response received. Please ensure you are logged in.")
+        
+    def get_weekly_battery_stats(self, plantId: str, mixSn: str):
+        """
+        Fetch the daily charge and discharge of your battery within the last 7 days.
+
+        Parameters:
+        plantId (str): The ID of the plant.
+        mixSn (str): The serial number of the mix device.
+        """
+
+        data = {
+            "plantId": plantId,	
+            "mixSn": mixSn
+        }
+
+        res = self.session.post(f"{self.BASE_URL}/panel/mix/getMIXBatChart", data=data)
+        res.raise_for_status()
+
+        try:
+            json_res = res.json()
+
+            if not json_res:
+                raise ValueError("Empty response. Please ensure you are logged in.")
+            return json_res
+        except re.exceptions.JSONDecodeError:
+            raise ValueError("Invalid response received. Please ensure you are logged in.")
 
 
