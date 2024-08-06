@@ -69,6 +69,30 @@ mixStatus = api.get_mix_status(plantId, mixSn)
 pprint(mixStatus)
 ```
 
+## Fetching periodic data
+
+To fetch periodic data such as daily, monthly, yearly or total, you can use the following functions.
+
+### Daily
+```python
+api.get_energy_stats_yearly("2024-08-06",1234567,"ODCUTJF8IFP")
+```
+### Monthly
+```python
+api.get_energy_stats_yearly("2024-08",1234567,"ODCUTJF8IFP")
+```
+### Yearly
+```python
+api.get_energy_stats_yearly("2024",1234567,"ODCUTJF8IFP")
+```
+
+## Battery weekly data
+Battery information is in a weekly format.
+
+```python
+api.get_weekly_battery_stats(1234567,"ODCUTJF8IFP")
+```
+
 ### License
 
 This project is licensed under the MIT License. See the LICENSE file for more details.

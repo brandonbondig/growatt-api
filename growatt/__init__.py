@@ -57,7 +57,7 @@ class Growatt:
                     {
                         'timezone': '1',
                         'id': '1234567',
-                        'plantName': 'User Name'
+                        'plantName': 'name'
                     },
                     ...
                 ]
@@ -161,6 +161,36 @@ class Growatt:
             raise ValueError("Invalid response received. Please ensure you are logged in.")
 
     def get_mix_total(self, plantId: str, mixSn: str):
+        """
+        Retrieves the total measurements from specific MIX.
+
+        Args:
+            plantId (str): The ID of the plant.
+            mixSn (str): The ID of the MIX.
+
+        Returns:
+            list: A dictionary containing total mix information.
+            Example:
+                {
+                "eselfToday": "7.4",
+                "gridPowerTotal": "2743",
+                "eselfTotal": "3428",
+                "elocalLoadToday": "12.6",
+                "gridPowerToday": "5.2",
+                "elocalLoadTotal": "6171",
+                "eexTotal": "0",
+                "photovoltaicRevenueToday": "37.3",
+                "eexToday": "0",
+                "etoGridToday": "18.2",
+                "edischarge1Total": "1600.5",
+                "photovoltaicRevenueTotal": "7338.4",
+                "unit": "kr",
+                "edischarge1Today": "0.4",
+                "epvToday": "31.1",
+                "epvTotal": "6115.3",
+                "etogridTotal": "2568.6"
+                }
+        """
         data = {
             'mixSn': str(mixSn),
         }
@@ -177,6 +207,44 @@ class Growatt:
             raise ValueError("Invalid response received. Please ensure you are logged in.")
     
     def get_mix_status(self, plantId: str, mixSn: str):
+        """
+        Retrieves the current status of measurements from specific MIX.
+
+        Args:
+            plantId (str): The ID of the plant.
+            mixSn (str): The ID of the MIX.
+
+        Returns:
+            list: A dictionary containing the current status of mix information.
+            Example:
+                    {
+                    "pdisCharge1": 0,
+                    "uwSysWorkMode": "5",
+                    "pactouser": 0,
+                    "vBat": "53.1",
+                    "vAc1": "236.7",
+                    "priorityChoose": "0",
+                    "lost": "mix.status.normal",
+                    "pactogrid": 0.34,
+                    "pLocalLoad": 0.84,
+                    "vPv2": "252.9",
+                    "deviceType": "2",
+                    "pex": 0,
+                    "chargePower": 0,
+                    "vPv1": "256.7",
+                    "upsVac1": "0",
+                    "SOC": "95",
+                    "wBatteryType": "1",
+                    "pPv2": "615.6",
+                    "fAc": "50.02",
+                    "vac1": "236.7",
+                    "pPv1": "568.4",
+                    "storagePpv": "1.18",
+                    "upsFac": "0",
+                    "ppv": 1.18,
+                    "status": "5"
+                    }
+        """
 
         data = {
             'mixSn': mixSn
@@ -205,6 +273,33 @@ class Growatt:
 
         Example:
         api.get_energy_stats_daily(date="2024-07-28", plantId="1234567", mixSn="ODCUTJF8IFP")
+
+        Returns:
+            list: A JSON object that contains periodic data for the given day.
+            Example:
+
+        {
+            "result": 1,
+            "obj": {
+            "etouser": "5.2",
+            "charts": {
+            "pex": [LIST],
+            "pacToGrid": [LIST],
+            "pcharge": [LIST],
+            "ppv": [LIST],
+            "sysOut": [LIST],
+            "pself": [LIST],
+            "elocalLoad": [LIST],
+            "pdischarge": [LIST],
+            "pacToUser": [LIST]
+            },
+            "eCharge": "25.7",
+            "eAcCharge": "18.3",
+            "eChargeToday2": "7.4",
+            "elocalLoad": "12.6",
+            "eChargeToday1": "7.4"
+            }
+        }
         """
 
         data = {
@@ -236,6 +331,33 @@ class Growatt:
 
         Example:
         api.get_energy_stats_daily(date="2024-07", plantId="1234567", mixSn="ODCUTJF8IFP")
+
+        Returns:        
+            list: A JSON object that contains periodic data for the given month.
+            Example:
+
+        {
+            "result": 1,
+            "obj": {
+            "etouser": "5.2",
+            "charts": {
+            "pex": [LIST],
+            "pacToGrid": [LIST],
+            "pcharge": [LIST],
+            "ppv": [LIST],
+            "sysOut": [LIST],
+            "pself": [LIST],
+            "elocalLoad": [LIST],
+            "pdischarge": [LIST],
+            "pacToUser": [LIST]
+            },
+            "eCharge": "25.7",
+            "eAcCharge": "18.3",
+            "eChargeToday2": "7.4",
+            "elocalLoad": "12.6",
+            "eChargeToday1": "7.4"
+            }
+        }
         """
 
         data = {
@@ -267,6 +389,34 @@ class Growatt:
 
         Example:
         api.get_energy_stats_daily(year="2024", plantId="1234567", mixSn="ODCUTJF8IFP")
+
+
+        Returns:        
+            list: A JSON object that contains periodic data for the given year.
+            Example:
+
+        {
+            "result": 1,
+            "obj": {
+            "etouser": "5.2",
+            "charts": {
+            "pex": [LIST],
+            "pacToGrid": [LIST],
+            "pcharge": [LIST],
+            "ppv": [LIST],
+            "sysOut": [LIST],
+            "pself": [LIST],
+            "elocalLoad": [LIST],
+            "pdischarge": [LIST],
+            "pacToUser": [LIST]
+            },
+            "eCharge": "25.7",
+            "eAcCharge": "18.3",
+            "eChargeToday2": "7.4",
+            "elocalLoad": "12.6",
+            "eChargeToday1": "7.4"
+            }
+        }
         """
         data = {
             "year": year,
@@ -298,6 +448,33 @@ class Growatt:
 
         Example:
         api.get_energy_stats_daily(year="2024", plantId="1234567", mixSn="ODCUTJF8IFP")
+
+        Returns:        
+            list: A JSON object that contains total periodic data.
+            Example:
+
+        {
+            "result": 1,
+            "obj": {
+            "etouser": "5.2",
+            "charts": {
+            "pex": [LIST],
+            "pacToGrid": [LIST],
+            "pcharge": [LIST],
+            "ppv": [LIST],
+            "sysOut": [LIST],
+            "pself": [LIST],
+            "elocalLoad": [LIST],
+            "pdischarge": [LIST],
+            "pacToUser": [LIST]
+            },
+            "eCharge": "25.7",
+            "eAcCharge": "18.3",
+            "eChargeToday2": "7.4",
+            "elocalLoad": "12.6",
+            "eChargeToday1": "7.4"
+            }
+        }
         """
 
         data = {
@@ -319,13 +496,39 @@ class Growatt:
             raise ValueError("Invalid response received. Please ensure you are logged in.")
         
     def get_weekly_battery_stats(self, plantId: str, mixSn: str):
-        """
+        '''
         Fetch the daily charge and discharge of your battery within the last 7 days.
 
         Parameters:
         plantId (str): The ID of the plant.
         mixSn (str): The serial number of the mix device.
-        """
+
+        Returns:
+            Example:
+            {
+                "result": 1,
+                "obj": {
+                    "date": "2024-08-06",
+                    "cdsTitle": [
+                    "2024-07-31",
+                    "2024-08-01",
+                    "2024-08-02",
+                    "2024-08-03",
+                    "2024-08-04",
+                    "2024-08-05",
+                    "2024-08-06"
+                    ],
+                    "batType": 1,
+                    "socChart": {
+                    "soc": [LIST]
+                    },
+                    "cdsData": {
+                    "cd_charge": [LIST],
+                    "cd_disCharge": [LIST]
+                    }
+                }
+            }
+        '''
 
         data = {
             "plantId": plantId,	
