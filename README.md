@@ -66,7 +66,7 @@ mixTotal = api.get_mix_total(plantId, mixSn)
 print(mixTotal)
 
 mixStatus = api.get_mix_status(plantId, mixSn)
-pprint(mixStatus)
+print(mixStatus)
 ```
 
 ## Fetching periodic data
@@ -75,11 +75,11 @@ To fetch periodic data such as daily, monthly, yearly or total, you can use the 
 
 ### Daily
 ```python
-api.get_energy_stats_yearly("2024-08-06",1234567,"ODCUTJF8IFP")
+api.get_energy_stats_dailyly("2024-08-06",1234567,"ODCUTJF8IFP")
 ```
 ### Monthly
 ```python
-api.get_energy_stats_yearly("2024-08",1234567,"ODCUTJF8IFP")
+api.get_energy_stats_monthly("2024-08",1234567,"ODCUTJF8IFP")
 ```
 ### Yearly
 ```python
