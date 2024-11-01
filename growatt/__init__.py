@@ -1,5 +1,6 @@
 import requests as re
 import hashlib
+from datetime import datetime
 
 class Growatt:
     
@@ -546,5 +547,38 @@ class Growatt:
             return json_res
         except re.exceptions.JSONDecodeError:
             raise ValueError("Invalid response received. Please ensure you are logged in.")
+
+    def post_mix_ac_discharge_time_period_now(self, plantId: str, mixSn: str):
+        '''
+        Set inverter data time.
+
+        Parameters:
+        plantId (str): The ID of the plant.
+        mixSn (str): The serial number of the mix device.
+
+        Returns:
+            Example:
+
+        '''
+
+        data = { 
+	                "action":"mixSet",    # Parameter set Action
+	                "serialNum":mixSn,    # Parameter Serial Number of the inverter
+	                "type":"pf_sys_year",    # Parameter set Command Type
+	                "param1":datetime.now()    # Parameter 1
+                }
+
+        res = self.session.post(f"{self.BASE_URL}/tcpSet.do", data=data)
+        res.raise_for_status()
+
+        try:
+            json_res = res.json()
+
+            if not json_res:
+                raise ValueError("Empty response. Please ensure you are logged in.")
+            return json_res
+        except re.exceptions.JSONDecodeError:
+            raise ValueError("Invalid response received. Please ensure you are logged in.")
+
 
 
