@@ -66,7 +66,7 @@ mixTotal = api.get_mix_total(plantId, mixSn)
 print(mixTotal)
 
 mixStatus = api.get_mix_status(plantId, mixSn)
-pprint(mixStatus)
+print(mixStatus)
 ```
 
 ## Fetching periodic data
@@ -75,22 +75,22 @@ To fetch periodic data such as daily, monthly, yearly or total, you can use the 
 
 ### Daily
 ```python
-api.get_energy_stats_yearly("2024-08-06",1234567,"ODCUTJF8IFP")
+api.get_energy_stats_daily("2024-08-06",plantId, mixSn)
 ```
 ### Monthly
 ```python
-api.get_energy_stats_yearly("2024-08",1234567,"ODCUTJF8IFP")
+api.get_energy_stats_monthly("2024-08",plantId, mixSn)
 ```
 ### Yearly
 ```python
-api.get_energy_stats_yearly("2024",1234567,"ODCUTJF8IFP")
+api.get_energy_stats_yearly("2024",plantId, mixSn)
 ```
 
 ## Battery weekly data
 Battery information is in a weekly format.
 
 ```python
-api.get_weekly_battery_stats(1234567,"ODCUTJF8IFP")
+api.get_weekly_battery_stats(plantId, mixSn)
 ```
 
 ### License
