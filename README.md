@@ -75,7 +75,7 @@ To fetch periodic data such as daily, monthly, yearly or total, you can use the 
 
 ### Daily
 ```python
-api.get_energy_stats_dailyly("2024-08-06",1234567,"ODCUTJF8IFP")
+api.get_energy_stats_daily("2024-08-06",1234567,"ODCUTJF8IFP")
 ```
 ### Monthly
 ```python
